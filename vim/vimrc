@@ -17,19 +17,19 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-" Plugins
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'junegunn/goyo.vim'
-call vundle#end()
-filetype plugin indent on
+"call vundle#begin()
+"Plugin 'VundleVim/Vundle.vim'
+"" Plugins
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'vim-syntastic/syntastic'
+"Plugin 'junegunn/goyo.vim'
+"call vundle#end()
+"filetype plugin indent on
 
 """
 " Plugin Settings
