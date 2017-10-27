@@ -1,6 +1,7 @@
 # General
 c.editor.command = ["urxvt", "-e", "vim", "-f", "{}"]
 c.downloads.location.directory = '~/Downloads'
+c.completion.height ="30%"
 
 # Bindings
 config.bind('J', 'tab-prev', mode='normal')
@@ -24,4 +25,3 @@ c.url.searchengines['r'] = 'https://reddit.com/r/{}'
 c.url.searchengines['4'] = 'https://4chan.org/{}'
 c.url.searchengines['y'] = 'https://youtube.com/results?search_query={}'
 c.url.searchengines['t'] = 'https://twitter.com/{}'
-

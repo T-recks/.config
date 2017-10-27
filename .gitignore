@@ -16,6 +16,12 @@ openbox/
 pcmanfm/
 pulse/
 sonic-pi.net/
+mpd/playlists/
+mpd/database
+mpd/log
+mpd/pid
+mpd/state
+mpd/sticker.sql
 Trolltech.conf
 user-dirs.dirs
 user-dirs.locale
