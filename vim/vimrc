@@ -78,6 +78,19 @@ autocmd InsertLeave * call NumberToggle()
 " Spell-check set to F6
 map <F6> :setlocal spell! spelllang=en_us<CR>
 
+" Change windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Switch : <-> ;
+nnoremap ; :
+nnoremap : ;
+
+" Yank to end of line
+nnoremap Y y$
+
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish

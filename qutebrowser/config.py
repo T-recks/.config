@@ -2,6 +2,8 @@
 c.editor.command = ["urxvt", "-e", "vim", "-f", "{}"]
 c.downloads.location.directory = '~/Downloads'
 c.completion.height ="30%"
+c.tabs.last_close = 'blank'
+c.url.start_pages = ['file:///home/tim/.config/qutebrowser/start.html']
 
 # Bindings
 config.bind('J', 'tab-prev', mode='normal')
@@ -11,6 +13,14 @@ config.bind('u', 'scroll-page 0 -0.5', mode='normal')
 config.bind('<Ctrl-D>', 'tab-close', mode='normal')
 config.bind('<Ctrl-U>', 'undo', mode='normal')
 config.bind('<Escape>', 'leave-mode', mode='passthrough')
+
+config.bind(';q', 'quit')
+config.bind(';W', 'session-save')
+config.bind(';wq', 'quit --save')
+config.bind(',h', ':help')
+
+# Aliases
+c.aliases['gh'] = 'open -t https://github.com'
 
 # Search
 c.url.searchengines['w'] = 'https://en.wikipedia.org/w/?search={}'

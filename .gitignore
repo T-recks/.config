@@ -22,6 +22,9 @@ mpd/log
 mpd/pid
 mpd/state
 mpd/sticker.sql
+mps-youtube/cache*
+mps-youtube/input_history
+mps-youtube/play_history
 Trolltech.conf
 user-dirs.dirs
 user-dirs.locale
