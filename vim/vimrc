@@ -1,40 +1,85 @@
+" Disable Vi compatibility
+set nocompatible
 
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2016 Jul 28
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+" syntax
+syntax enable
 
 """
-" Vundle setup
+" Visuals
 """
-set nocompatible              " be iMproved, required
-filetype off                  " required
+colorscheme wal
 
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
+" Search/Tab-completion is recurssive from working directory
+set path+=**
 
-"call vundle#begin()
-"Plugin 'VundleVim/Vundle.vim'
-"" Plugins
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'vim-syntastic/syntastic'
-"Plugin 'junegunn/goyo.vim'
-"call vundle#end()
+" Tab completion settings
+set wildmenu
+set wildmode=list:longest,full
+
+" Use mouse
+set mouse=a
+
+" Always include status line
+set laststatus=2
+
+" Include file name in status line
+" set statusline+=%f%l%c
+" Create tags file in working directory
+command! MakeTags !ctags -R .
+
+" netrw settings
+let g:netrw_banner=0 " disable banner
+let g:netrw_liststyle=3 "tree view
+autocmd FileType netrw setl bufhidden=delete " Per default, netrw leaves unmodified buffers open. This autocommand deletes netrw's buffer once it's hidden (using ':q', for example)
+
+filetype on
 "filetype plugin indent on
 
+" ignore cases except uppercase
+set ignorecase smartcase
+
+" <Leader> set to spacebar
+let mapleader = " "
+
+" Spell-check set to <Leader>s
+nmap <Leader>s ;setlocal spell! spelllang=en_us<CR>
+
+" Edit vimrc
+nmap <Leader>ev ;tabe $MYVIMRC<cr>
+
+" Enable search highlighting
+set hlsearch
+
+" Toggle search highlight
+function! HighlightToggle()
+	if (&hlsearch == 1)
+		set nohlsearch
+	else
+		set hlsearch
+	endif
+endfunc
+
+nnoremap <Leader>h :call HighlightToggle()<cr>
+
+" Auto source vimrc on save
+augroup autosourcing
+	autocmd!
+	autocmd BufWritePost .vimrc source %
+augroup END
+
 """
-" Plugin Settings
+" Windows
 """
-map <Leader>k :NERDTreeToggle<CR>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+set splitbelow
+set splitright
+
+" Switch : <-> ;
+nnoremap ; :
+nnoremap : ;
 
 """
 " backup file settings
@@ -71,22 +116,9 @@ function! NumberToggle()
   endif
 endfunc
 
-map <C-n> :call NumberToggle()<cr>
+nnoremap <Leader>n :call NumberToggle()<cr>
 autocmd InsertEnter * call NumberToggle()
 autocmd InsertLeave * call NumberToggle()
-
-" Spell-check set to F6
-map <F6> :setlocal spell! spelllang=en_us<CR>
-
-" Change windows
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-" Switch : <-> ;
-nnoremap ; :
-nnoremap : ;
 
 " Yank to end of line
 nnoremap Y y$
@@ -108,10 +140,10 @@ else
   endif
 endif
 
-"if &t_Co > 2 || has("gui_running")
-" " Switch on highlighting the last used search pattern.
-" set hlsearch
-"endif
+" if &t_Co > 2 || has("gui_running")
+"  " Switch on highlighting the last used search pattern.
+"  set hlsearch
+" endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
