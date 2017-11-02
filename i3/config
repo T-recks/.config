@@ -16,7 +16,7 @@ set $term urxvt
 set $browser1 qutebrowser
 set $browser2 waterfox
 
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always compton -fc
 #exec --no-startup-id xsetroot -solid "#4682B4"
 #exec_always --no-startup-id wal -c -i ~/.config/wall.png
@@ -209,11 +209,9 @@ mode "resize" {
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#        status_command i3status
-#		position top
-#		i3bar_command i3bar -t
-#}
+bar {
+	i3bar_command $HOME/.config/polybar/launch.sh
+}
 
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
