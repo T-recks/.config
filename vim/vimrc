@@ -49,7 +49,6 @@ nmap <Leader>ev ;tabe $MYVIMRC<cr>
 
 " Enable search highlighting
 set hlsearch
-
 " Toggle search highlight
 function! HighlightToggle()
 	if (&hlsearch == 1)
@@ -93,6 +92,7 @@ set undodir=~/.vim/un
 """
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 
 """
 " Line number settings
@@ -139,11 +139,6 @@ else
     set undofile	" keep an undo file (undo changes after closing)
   endif
 endif
-
-" if &t_Co > 2 || has("gui_running")
-"  " Switch on highlighting the last used search pattern.
-"  set hlsearch
-" endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
