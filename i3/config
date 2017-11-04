@@ -82,7 +82,7 @@ bindsym $mod+q kill
 bindsym $mod+Shift+x exec urxvt -e bash ~/Code/Scripts/shutdown.sh
 
 # rofi
-bindsym $mod+space exec "rofi -show run -modi run,window,ssh -sidebar-mode"
+bindsym $mod+space exec "rofi -show run -modi run,window -sidebar-mode"
 
 # change focus
 bindsym $mod+h focus left
