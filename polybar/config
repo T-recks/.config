@@ -9,14 +9,14 @@
 
 [colors]
 background = ${xrdb:color0:#222}
-; background = #222
-background-alt = #444
-foreground = ${xrdb:color7:#222}
-; foreground = #dfdfdf
-foreground-alt = #555
+background-alt = ${xrdb:color8}
+background-grey = #444
+foreground = #dfdfdf
+foreground-alt = ${xrdb:color7:#222}
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+lines = ${xrdb:color1}
 color00	      = ${xrdb:color0}
 color01      = ${xrdb:color1}
 color02	      = ${xrdb:color2}
@@ -34,10 +34,10 @@ color13	    = ${xrdb:color13}
 color14	    = ${xrdb:color14}
 color15	    = ${xrdb:color15}
 
-[bar/mainbar]
+[bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 27
+height = 25
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 6.0
@@ -53,7 +53,7 @@ border-size = 4
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 ; module-margin-left = 1
 ; module-margin-right = 2
@@ -67,14 +67,25 @@ font-3 = FontAwesome:pixelsize=10;1
 ; font-4 = Hack:pixelsize=32;2
 
 
-modules-left = date pipe xwindow
-modules-center = arrow1 i3 arrow0
-modules-right = mpd pipe volume xkeyboard wlan eth battery
+modules-left = i3 arrowR xwindow RightArrow2 RightArrow1
+modules-center = date2
+modules-right = arrow1 arrow2 mpd arrowL volume xkeyboard battery wlan eth
+
+; [bar/secondary]
+; inherit bar/main
+; modules-left = i3 arrowR xwindow RightArrow2 RightArrow1
+; modules-center = arrowL date2 arrowR
+; modules-right = arrow1 arrow2 mpd arrowL volume xkeyboard battery wlan eth
+
+;------------------------------
+;	T R A Y
+;------------------------------
 
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
-;tray-background = #0063ff
+; tray-background = #0063ff
+
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -97,37 +108,93 @@ content = "  |  "
 content-foreground = ${colors.color01}
 ; content-padding = 1
 
-[module/arrow0]
+[module/arrowR]
 ; background to trans
 type = custom/text
 content = " "
 content-font = 0
-content-foreground = ${colors.color08}
+content-foreground = ${colors.background-alt}
 content-background = ${colors.background}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
-[module/arrow1]
+[module/arrowL]
 ; grey to Blue
 type = custom/text
 content = " "
 content-font = 0
-content-foreground = ${colors.color08}
+content-foreground = ${colors.background-alt}
 content-background = ${colors.background}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
+
+[module/arrow1]
+type = custom/text
+content = ""
+content-font = 0
+content-foreground = ${colors.color01}
+content-background = ${colors.color00}
+
+[module/arrow2]
+type = custom/text
+content = ""
+content-font = 0
+content-foreground = ${colors.color00}
+content-background = ${colors.color01}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
+
+[module/arrow3]
+type = custom/text
+content = "  "
+content-foreground = ${colors.color00}
+content-background = ${colors.color08}
+
+[module/RightArrow1]
+type = custom/text
+content = ""
+content-font = 0
+content-foreground = ${colors.color01}
+content-background = ${colors.color00}
+
+[module/RightArrow2]
+type = custom/text
+content = ""
+content-font = 0
+content-foreground = ${colors.color00}
+content-background = ${colors.color01}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
+
+[module/RightArrow3]
+type = custom/text
+content = "  "
+content-foreground = ${colors.color00}
+content-background = ${colors.color08}
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:45:...%
 format-foreground = ${colors.color04}
+format-underline = ${colors.color01}
+format-overline = ${colors.color01}
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
+format-keyboard = <format-prefix><label-layout>
+format-underline = ${colors.color01}
+format-overline = ${colors.color01}
+
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background-alt}
 ; format-prefix-underline = ${colors.secondary}
 
 label-layout = "%layout%  "
 ; label-layout-underline = ${colors.secondary}
+label-layout-background = ${colors.background-alt}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -148,7 +215,7 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 
 label-focused = %index%
-; label-focused-background = ${colors.color08}
+; label-focused-background = ${colors.background-alt}
 label-focused-foreground = ${colors.color01}
 label-focused-underline= ${colors.color01}
 ; label-focused-overline = ${colors.color01}
@@ -170,6 +237,8 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+format-overline = ${colors.color01}
+format-underline = ${colors.color01}
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
@@ -180,22 +249,22 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.color08}
-label-focused-foreground = ${colors.color07}
-label-focused-underline = ${colors.color07}
+label-focused-background = ${colors.background-alt}
+label-focused-foreground = ${colors.foreground}
+; label-focused-underline = ${colors.color07}
 ; label-focused-overline = ${module/bspwm.label-focused-overline}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-background = ${colors.color08}
+label-unfocused-background = ${colors.background-alt}
 label-unfocused-foreground = ${colors.color00}
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
+label-visible-underline = ${colors.color01}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
@@ -205,7 +274,9 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-time> <toggle><label-song>
+format-online-underline = ${colors.color01}
+format-online-overline = ${colors.color01}
+format-online = <label-song> <label-time>
 format-offline = <label-offline>
 format-stopped = 🎜
 icon-stop = 
@@ -268,16 +339,22 @@ interface = wlp3s0
 interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
-format-connected = "<ramp-signal>   "
+format-connected = "   "
 ; format-connected-underline = #9f78e1
 format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background-alt}
 label-connected = %essid%
+format-connected-underline = ${colors.color01}
+format-connected-overline = ${colors.color01}
 
 format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = "   "
-label-disconnected-foreground = #ff0000
+label-disconnected = "   "
+label-disconnected-foreground = ${colors.color00}
+label-disconnected-background = ${colors.background-alt}
 ; format-disconnected-underline = #ff0000
+format-disconnected-underline = ${colors.color01}
+format-disconnected-overline = ${colors.color01}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -326,14 +403,24 @@ date-alt = "%d/%m/%Y"
 
 ; time = "%a %b %d, %I:%M %p "
 time = "   %H:%M"
-
 time-alt = %H:%M
 
-format-prefix-foreground = ${colors.foreground}
-format-date-underline = ${colors.color04}
-
+; format-prefix-foreground = ${colors.foreground}
+; format-date-underline = ${colors.color04}
 
 label = %time% %date% 
+label-background = ${colors.background-alt}
+
+[module/date2]
+type = internal/date
+interval = 5
+time = " %H:%M"
+time-alt  = " %d/%m/%Y"
+label = %time%
+label-foreground = ${colors.foreground-alt}
+label-background = ${colors.background}
+; label-underline = ${colors.color06}
+; label-overline = ${colors.color01}
 
 [module/volume]
 type = internal/volume
@@ -341,10 +428,16 @@ type = internal/volume
 format-volume = <label-volume>
 label-volume = " %percentage%%  "
 label-volume-foreground = ${root.foreground}
+format-volume-background = ${colors.background-alt}
+format-volume-underline = ${colors.color01}
+format-volume-overline = ${colors.color01}
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.color00}
 label-muted = "00%  "
+format-muted-background = ${colors.background-alt}
+format-muted-underline = ${colors.color01}
+format-muted-overline = ${colors.color01}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = ${colors.color00}
@@ -370,23 +463,32 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
+format-charging-background = ${colors.background-alt}
+label-charging-background = ${colors.background-alt}
 ; format-charging-underline = #ffb52a
 
 format-discharging = <ramp-capacity> <label-discharging>
-; format-discharging-underline = ${self.format-charging-underline}
+format-discharging-background = ${colors.background-alt}
+; format-discharging-underline = #ff0000
 
 ; format-full-prefix = ${env:CODEPOINT_OF_AWESOME_BATTERY}
 ; format-full-prefix = ${env:VOL1}
-format-full-prefix = 
+; format-full-prefix = 
+format-full = <ramp-capacity><label-full>
+label-full-background = ${colors.background-alt}
+; format-full-padding = 2
+format-full-background = ${colors.background-alt}
 format-full-prefix-foreground = ${colors.foreground}
-; format-full-underline = ${self.format-charging-underline}
+format-full-underline = ${colors.color01}
+format-full-overline = ${colors.color01}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.foreground}
+ramp-capacity-background = ${colors.background-alt}
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -394,6 +496,7 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground}
+animation-charging-background = ${colors.background-alt}
 animation-charging-framerate = 750
 
 [module/temperature]
