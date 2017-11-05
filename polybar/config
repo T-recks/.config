@@ -484,14 +484,19 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging><label-charging>
 format-charging-background = ${colors.background-alt}
 label-charging-background = ${colors.background-alt}
 ; format-charging-underline = #ffb52a
+format-charging-underline = ${colors.color01}
+format-charging-overline = ${colors.color01}
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity><label-discharging>
 format-discharging-background = ${colors.background-alt}
 ; format-discharging-underline = #ff0000
+format-discharging-underline = ${colors.color01}
+format-discharging-overline = ${colors.color01}
+
 
 ; format-full-prefix = ${env:CODEPOINT_OF_AWESOME_BATTERY}
 ; format-full-prefix = ${env:VOL1}
@@ -510,7 +515,14 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.foreground}
-ramp-capacity-background = ${colors.background-alt}
+ramp-capacity-0-background = ${colors.background-alt}
+; ramp-capacity-1-background = ${colors.background-alt}
+; ramp-capacity-2-background = ${colors.background-alt}
+; ramp-capacity-3-background = ${colors.background-alt}
+; ramp-capacity-4-background = ${colors.background-alt}
+ramp-capacity-0-underline = ${colors.color01}
+ramp-capacity-0-overline = ${colors.color01}
+
 
 animation-charging-0 = 
 animation-charging-1 = 
