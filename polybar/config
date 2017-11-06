@@ -68,7 +68,7 @@ font-3 = FontAwesome:pixelsize=10;2
 
 modules-left = space i3 arrowR RightArrow4 xwindow RightArrow2 RightArrow1
 modules-center = date2
-modules-right = arrow1 arrow2 mpd arrow4 arrowL volume xkeyboard battery wlan eth space
+modules-right = RightArrow7 RightArrow4 mpd RightArrow2 RightArrow5 volume xkeyboard battery temperature wlan eth space
 
 ; [bar/secondary]
 ; inherit bar/main
@@ -112,6 +112,13 @@ content-foreground = ${colors.lines}
 type = custom/text
 content = " "
 content-background = ${colors.lines}
+
+[module/space2]
+type = custom/text
+content = " "
+content-background = ${colors.background}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/arrowR]
 ; background to trans
@@ -188,15 +195,40 @@ content-background = ${colors.color08}
 
 [module/RightArrow4]
 type = custom/text
-content = ""
+content = " "
 content-foreground = ${colors.color01}
 content-background = ${colors.color00}
 content-underline = ${colors.color01}
 content-overline = ${colors.color01}
 
+[module/RightArrow5]
+type = custom/text
+content = " "
+content-font = 0
+content-foreground = ${colors.color01}
+content-background = ${colors.background-alt}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
+
+[module/RightArrow6]
+type = custom/text
+content = " "
+content-font = 0
+content-foreground = ${colors.color00}
+content-background = ${colors.color01}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
+
+[module/RightArrow7]
+type = custom/text
+content = ""
+content-font = 0
+content-foreground = ${colors.color00}
+content-background = ${colors.color01}
+
 [module/xwindow]
 type = internal/xwindow
-label = " %title:0:45:...%"
+label = "%title:0:45:...%"
 format-foreground = ${colors.color04}
 format-underline = ${colors.color01}
 format-overline = ${colors.color01}
@@ -214,7 +246,7 @@ format-prefix-foreground = ${colors.foreground}
 format-prefix-background = ${colors.background-alt}
 ; format-prefix-underline = ${colors.secondary}
 
-label-layout = "%layout%  "
+label-layout = "%layout% "
 ; label-layout-underline = ${colors.secondary}
 label-layout-background = ${colors.background-alt}
 
@@ -300,22 +332,25 @@ format-online-underline = ${colors.color01}
 format-online-overline = ${colors.color01}
 format-online = <label-song> <label-time>
 format-offline = <label-offline>
-format-stopped = 🎜
-icon-stop = 
-icon-play = 
+format-stopped = %{self.format-online}
+;icon-stop = 
+icon-stop = " "
+;icon-play = 
+icon-play = " "
 icon-pause = 
+; format-paused = "pause"
 
 label-song = 𝄞 %title%
 label-song-maxlen = 25
 label-song-ellipsis = true
 
-label-time = "(%elapsed%/%total%) "
+label-time = "(%elapsed%/%total%)"
 
 label-offline = 🎜 mpd is offline
 format-online-foreground = ${colors.color04}
 label-song-foreground = ${colors.color04}
 
-label-stopped = 🎜
+;label-stopped = 🎜
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -361,10 +396,11 @@ interface = wlp3s0
 interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
-format-connected = "   "
+format-connected = "  "
 ; format-connected-underline = #9f78e1
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.background-alt}
+; format-padding = 1
 label-connected = %essid%
 format-connected-underline = ${colors.color01}
 format-connected-overline = ${colors.color01}
@@ -532,24 +568,30 @@ animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground}
 animation-charging-background = ${colors.background-alt}
 animation-charging-framerate = 750
+animation-charging-padding = 1
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
-format-underline = #f50a4d
+format = "<ramp> <label>"
+format-underline = ${colors.lines}
+format-overline = ${colors.lines}
+format-background = ${colors.background-alt}
+format-padding = 1
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
+format-warn-overline = ${self.format-underline}
 
 label = %temperature%
 label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = #ff0000
+label-warn-background = ${colors.background-alt}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
