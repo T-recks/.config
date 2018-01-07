@@ -45,6 +45,9 @@ font pango:DejaVu Sans Mono 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# lock
+bindsym XF86ScreenSaver exec bash /home/tim/.config/i3/scripts/lock/lock.sh
+
 # MPC
 set $pause --no-startup-id mpc toggle
 set $next --no-startup-id mpc next
