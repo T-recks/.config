@@ -8,7 +8,7 @@
 for_window [class="^.*"] border pixel 3
 new_float normal
 smart_borders on
-gaps inner 10
+gaps inner 5
 #gaps outer 10
 
 set $mod Mod4
@@ -121,7 +121,7 @@ bindsym $mod+Shift+e gaps inner current plus 5
 bindsym $mod+Shift+w gaps inner current minus 5
 
 # Gaps Reset
-bindsym $mod+Shift+s gaps inner current set 10
+bindsym $mod+Shift+s gaps inner current set 5
 
 # Gaps Eliminate
 bindsym $mod+Shift+d gaps inner current set 0
