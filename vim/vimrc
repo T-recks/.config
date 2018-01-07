@@ -1,13 +1,41 @@
 " Disable Vi compatibility
 set nocompatible
 
+set backspace=indent,eol,start "backspace in insert
+set history=1000
+set mouse=a "use mouse
+
 " syntax
 syntax enable
+
+" filetype on
+filetype on 
+
+"""
+" indentation settings
+"""
+set autoindent 
+set tabstop=4 "softtabstop=4
+set shiftwidth=4 "shiftround
+" set smartindent smarttab
+" set expandtab
+
+" function! SetupPython()
+"     " Here, you can have the final say on what is set.  So
+"     " fixup any settings you don't like.
+"     setlocal softtabstop=4
+"     setlocal tabstop=4
+"     setlocal shiftwidth=4
+" endfunction
+" command! -bar SetupPython call SetupPython()
+
+" autocmd FileType python setlocal autoindent shiftwidth=4 tabstop=4 "softtabstop=4
 
 """
 " Visuals
 """
 colorscheme wal
+set display=truncate
 
 " Search/Tab-completion is recurssive from working directory
 set path+=**
@@ -15,9 +43,6 @@ set path+=**
 " Tab completion settings
 set wildmenu
 set wildmode=list:longest,full
-
-" Use mouse
-set mouse=a
 
 " Always include status line
 set laststatus=2
@@ -32,8 +57,10 @@ let g:netrw_banner=0 " disable banner
 let g:netrw_liststyle=3 "tree view
 autocmd FileType netrw setl bufhidden=delete " Per default, netrw leaves unmodified buffers open. This autocommand deletes netrw's buffer once it's hidden (using ':q', for example)
 
-filetype on
-"filetype plugin indent on
+autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
 
 " ignore cases except uppercase
 set ignorecase smartcase
@@ -48,7 +75,7 @@ nmap <Leader>s ;setlocal spell! spelllang=en_us<CR>
 nmap <Leader>ev ;tabe $MYVIMRC<cr>
 
 " Enable search highlighting
-set hlsearch
+set hlsearch incsearch
 " Toggle search highlight
 function! HighlightToggle()
 	if (&hlsearch == 1)
@@ -80,19 +107,18 @@ set splitright
 nnoremap ; :
 nnoremap : ;
 
+" Switch j/k and gj/gk
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
 """
 " backup file settings
 """
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set undodir=~/.vim/un
-
-"""
-" indentation settings
-"""
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
 
 """
 " Line number settings
@@ -124,39 +150,40 @@ autocmd InsertLeave * call NumberToggle()
 nnoremap Y y$
 
 " When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
+" if v:progname =~? "evim"
+"   finish
+" endif
 
 " Get the defaults that most users want.
-source $VIMRUNTIME/defaults.vim
+" source $VIMRUNTIME/defaults.vim
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file (restore to previous version)
-  if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
-  endif
-endif
+" if has("vms")
+"   set nobackup		" do not keep a backup file, use versions instead
+" else
+"   set backup		" keep a backup file (restore to previous version)
+"   if has('persistent_undo')
+"     set undofile	" keep an undo file (undo changes after closing)
+"   endif
+" endif
+set undolevels=1000 undofile undodir=~/.vim/un
 
 " Only do this part when compiled with support for autocommands.
-if has("autocmd")
+" if has("autocmd")
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+"   " Put these in an autocmd group, so that we can delete them easily.
+"   augroup vimrcEx
+"   au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  " autocmd FileType text setlocal textwidth=78
+"   " For all text files set 'textwidth' to 78 characters.
+"   " autocmd FileType text setlocal textwidth=78
 
-  augroup END
+"   augroup END
 
-else
+" else
 
-  set autoindent		" always set autoindenting on
+"   set autoindent		" always set autoindenting on
 
-endif " has("autocmd")
+" endif " has("autocmd")
 
 " Add optional packages.
 "
@@ -176,13 +203,13 @@ set timeoutlen=2000 " Wait {num} ms before timing out a mapping
 " default take a second or another keystroke to leave insert mode completely
 " and update the statusline. This fixes that. I got this from:
 " https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-if !has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=2000
-    augroup END
-endif
+" if !has('gui_running')
+"     set ttimeoutlen=10
+"     augroup FastEscape
+"         autocmd!
+"         au InsertEnter * set timeoutlen=0
+"         au InsertLeave * set timeoutlen=2000
+"     augroup END
+" endif
 
 

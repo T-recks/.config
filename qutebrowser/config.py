@@ -18,6 +18,11 @@ config.bind(';q', 'quit')
 config.bind(';W', 'session-save')
 config.bind(';wq', 'quit --save')
 config.bind(',h', ':help')
+config.bind(',gg', ':open github.com')
+config.bind(',gG', ':open -t github.com')
+config.bind(',gr', ':open reddit.com')
+config.bind(',gR', ':open -t reddit.com')
+
 
 # Aliases
 c.aliases['gh'] = 'open -t https://github.com'
@@ -35,3 +40,4 @@ c.url.searchengines['r'] = 'https://reddit.com/r/{}'
 c.url.searchengines['4'] = 'https://4chan.org/{}'
 c.url.searchengines['y'] = 'https://youtube.com/results?search_query={}'
 c.url.searchengines['t'] = 'https://twitter.com/{}'
+c.url.searchengines['a'] = 'https://www.amazon.com/s/?field-keywords={}'
