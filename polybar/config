@@ -68,7 +68,7 @@ font-3 = FontAwesome:pixelsize=10;2
 
 modules-left = space i3 arrowR RightArrow4 xwindow RightArrow2 RightArrow1
 modules-center = date2
-modules-right = RightArrow7 RightArrow4 mpd RightArrow2 RightArrow5 volume xkeyboard battery temperature wlan eth space
+modules-right = RightArrow7 RightArrow4 mpd RightArrow2 RightArrow5 volume xkeyboard temperature space2 battery eth space2 space
 
 ; [bar/secondary]
 ; inherit bar/main
@@ -250,7 +250,7 @@ label-layout = "%layout% "
 ; label-layout-underline = ${colors.secondary}
 label-layout-background = ${colors.background-alt}
 
-label-indicator-padding = 2
+label-indicator-padding = 1
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 ; label-indicator-underline = ${colors.secondary}
@@ -523,23 +523,19 @@ full-at = 98
 format-charging = <animation-charging><label-charging>
 format-charging-background = ${colors.background-alt}
 label-charging-background = ${colors.background-alt}
-; format-charging-underline = #ffb52a
 format-charging-underline = ${colors.color01}
 format-charging-overline = ${colors.color01}
 
 format-discharging = <ramp-capacity><label-discharging>
 format-discharging-background = ${colors.background-alt}
-; format-discharging-underline = #ff0000
 format-discharging-underline = ${colors.color01}
 format-discharging-overline = ${colors.color01}
-
 
 ; format-full-prefix = ${env:CODEPOINT_OF_AWESOME_BATTERY}
 ; format-full-prefix = ${env:VOL1}
 ; format-full-prefix = 
 format-full = <ramp-capacity><label-full>
 label-full-background = ${colors.background-alt}
-; format-full-padding = 2
 format-full-background = ${colors.background-alt}
 format-full-prefix-foreground = ${colors.foreground}
 format-full-underline = ${colors.color01}
@@ -579,7 +575,6 @@ format = "<ramp> <label>"
 format-underline = ${colors.lines}
 format-overline = ${colors.lines}
 format-background = ${colors.background-alt}
-format-padding = 1
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 format-warn-overline = ${self.format-underline}
