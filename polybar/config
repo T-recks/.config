@@ -332,7 +332,7 @@ format-online-underline = ${colors.color01}
 format-online-overline = ${colors.color01}
 format-online = <label-song> <label-time>
 format-offline = <label-offline>
-format-stopped = %{self.format-online}
+;format-stopped = %{self.format-online}
 ;icon-stop = 
 icon-stop = " "
 ;icon-play = 
@@ -396,7 +396,7 @@ interface = wlp3s0
 interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
-format-connected = "  "
+format-connected = " "
 ; format-connected-underline = #9f78e1
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.background-alt}
@@ -407,7 +407,7 @@ format-connected-overline = ${colors.color01}
 
 format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = "   "
+label-disconnected = " "
 label-disconnected-foreground = ${colors.color00}
 label-disconnected-background = ${colors.background-alt}
 ; format-disconnected-underline = #ff0000
@@ -592,7 +592,7 @@ label-warn-background = ${colors.background-alt}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu
