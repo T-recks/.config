@@ -569,7 +569,7 @@ animation-charging-padding = 1
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 70
 
 format = "<ramp> <label>"
 format-underline = ${colors.lines}
@@ -579,17 +579,16 @@ format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 format-warn-overline = ${self.format-underline}
 format-warn-background = ${colors.background-alt}
+format-warn-foreground = #ff0000
 
 label = %temperature%
 label-warn = %temperature%
-label-warn-foreground = #ff0000
 label-warn-background = ${colors.background-alt}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-3 = 
-ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu
