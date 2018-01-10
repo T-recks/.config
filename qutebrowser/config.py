@@ -22,7 +22,8 @@ config.bind(',gg', ':open github.com')
 config.bind(',gG', ':open -t github.com')
 config.bind(',gr', ':open reddit.com')
 config.bind(',gR', ':open -t reddit.com')
-
+config.bind(',gy', ':open youtube.com')
+config.bind(',gY', ':open -t youtube.com')
 
 # Aliases
 c.aliases['gh'] = 'open -t https://github.com'
@@ -34,10 +35,14 @@ c.url.searchengines['aw'] = 'https://wiki.archlinux.org/?search={}'
 c.url.searchengines['dw'] = 'https://wiki.debian.org/FrontPage?action=fullsearch&value={}'
 c.url.searchengines['gw'] = 'https://wiki.gentoo.org/?search={}'
 c.url.searchengines['ow'] = 'https://orthodoxwiki.org/?search={}'
-c.url.searchengines['g'] = 'https://github.com/search?q={}'
+c.url.searchengines['gh'] = 'https://github.com/search?q={}'
+c.url.searchengines['go'] = 'https://google.com/search?q={}'
 #c.url.searchengines['g/'] = 'https://github.com/{}/{}'
 c.url.searchengines['r'] = 'https://reddit.com/r/{}'
+c.url.searchengines['ru'] = 'https://reddit.com/user/{}'
 c.url.searchengines['4'] = 'https://4chan.org/{}'
 c.url.searchengines['y'] = 'https://youtube.com/results?search_query={}'
+c.url.searchengines['yt'] = 'https://youtube.com/results?search_query={}'
 c.url.searchengines['t'] = 'https://twitter.com/{}'
 c.url.searchengines['a'] = 'https://www.amazon.com/s/?field-keywords={}'
+c.url.searchengines['e'] = 'https://www.ebay.com/sch/i.html?_nkw={}'
