@@ -87,12 +87,6 @@ endfunc
 
 nnoremap <Leader>h :call HighlightToggle()<cr>
 
-" Auto source vimrc on save
-augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
-augroup END
-
 """
 " Windows
 """
@@ -212,4 +206,19 @@ set timeoutlen=2000 " Wait {num} ms before timing out a mapping
 "     augroup END
 " endif
 
-
+"""
+" autogroups
+"""
+augroup autosourcing
+	autocmd!
+	autocmd BufWritePost .vimrc source /home/tim/.config/vim/vimrc
+augroup END
+augroup filetype_rmarkdown
+    autocmd!
+    autocmd filetype rmd map <F5> ;!echo<space>"require(rmarkdown);<space>render('<c-r>%', 'pdf_document')"<space>\|<space>R<space>--vanilla<enter>
+    autocmd filetype rmd map <F6> ;!echo<space>"require(rmarkdown);<space>render('<c-r>%', 'html_document')"<space>\|<space>R<space>--vanilla<enter>
+augroup END
+augroup filetype_tex
+	autocmd!
+	autocmd filetype tex map <F5> ;!xelatex<space><c-r>%<Enter>
+augroup END
