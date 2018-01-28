@@ -1,11 +1,16 @@
+###
 # General
+###
 c.editor.command = ["urxvt", "-e", "vim", "-f", "{}"]
 c.downloads.location.directory = '~/Downloads'
-c.completion.height ="30%"
+c.completion.height ="33%"
 c.tabs.last_close = 'blank'
 c.url.start_pages = ['file:///home/tim/.config/qutebrowser/start.html']
 
+###
 # Bindings
+###
+# Rebindings
 config.bind('J', 'tab-prev', mode='normal')
 config.bind('K', 'tab-next', mode='normal')
 config.bind('d', 'scroll-page 0 0.5', mode='normal')
@@ -13,11 +18,16 @@ config.bind('u', 'scroll-page 0 -0.5', mode='normal')
 config.bind('<Ctrl-D>', 'tab-close', mode='normal')
 config.bind('<Ctrl-U>', 'undo', mode='normal')
 config.bind('<Escape>', 'leave-mode', mode='passthrough')
-
+# Easy access bindings
 config.bind(';q', 'quit')
+config.bind(',q', 'quit')
 config.bind(';W', 'session-save')
+config.bind(',W', 'session-save')
 config.bind(';wq', 'quit --save')
+config.bind(',wq', 'quit --save')
 config.bind(',h', ':help')
+config.bind(',H', ':open -t about:blank;;help')
+# Open bindings
 config.bind(',gg', ':open github.com')
 config.bind(',Gg', ':open -t github.com')
 config.bind(',gr', ':open reddit.com')
@@ -32,9 +42,22 @@ config.bind(',gd', ':open duolingo.com')
 config.bind(',Gd', ':open -t duolingo.com')
 config.bind(',gt', ':open translate.google.com')
 config.bind(',Gt', ':open -t translate.google.com')
+config.bind(',gpa', ':open archlinux.org/packages')
+config.bind(',Gpa', ':open -t archlinux.org/packages')
+config.bind(',gpd', ':open packages.debian.org;;open packages.debian.org#search_packages')
+config.bind(',Gpd', ':open -t packages.debian.org;;open packages.debian.org/#search_packages')
+config.bind(',gpg', ':open packages.gentoo.org')
+config.bind(',Gpg', ':open -t packages.gentoo.org')
+config.bind(',gpf', ':open freebsd.org/ports')
+config.bind(',Gpf', ':open -t freebsd.org/ports')
+# Config bindings
+config.bind(',cs', ':config-source')
+config.bind(',ce', ':config-edit')
 
+###
 # Aliases
-c.aliases['gh'] = 'open -t https://github.com'
+###
+c.aliases['gg'] = 'open -t https://github.com'
 
 ###
 # Search
