@@ -23,7 +23,7 @@ exec_always compton -fc
 exec --no-startup-id redshift
 exec --no-startup-id mpd
 
-#client.focused #ff0000 #ffffff #ff0000
+#client.focused #ff0000 #dfdfdf #ff0000
 #client.unfocused #444444 #111111 #444444
 #client.urgent #b33a3a #b27639 #b33a3a
 
@@ -65,14 +65,15 @@ bindsym $mod+m exec urxvt -e ncmpcpp
 bindsym $mod+Return exec $term
 
 # start a browser
-bindsym $mod+b exec $browser1
-bindsym $mod+Shift+b exec $browser2
+bindsym $mod+b exec --no-startup-id $browser1
+bindsym $mod+Shift+b exec --no-startup-id $browser2
 
 # run ranger
 bindsym $mod+r exec $term -e ranger
 
 # run neofetch
-bindsym $mod+n exec $term -hold -e neofetch
+bindsym $mod+n exec $term -hold -e neofetch &
+#bindsym $mod+Shift+n exec $term -hold -e sh -c neofetch &
 
 # run htop
 bindsym $mod+i exec $term -e htop
