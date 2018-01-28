@@ -71,8 +71,11 @@ bindsym $mod+Shift+b exec --no-startup-id $browser2
 # run ranger
 bindsym $mod+r exec $term -e ranger
 
+# run newsboat
+bindsym $mod+n exec $term -e newsboat
+
 # run neofetch
-bindsym $mod+n exec $term -hold -e neofetch &
+bindsym $mod+Shift+n exec $term -hold -e neofetch
 #bindsym $mod+Shift+n exec $term -hold -e sh -c neofetch &
 
 # run htop
