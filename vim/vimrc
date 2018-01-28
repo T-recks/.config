@@ -75,7 +75,7 @@ nmap <Leader>s ;setlocal spell! spelllang=en_us<CR>
 nmap <Leader>ev ;tabe $MYVIMRC<cr>
 
 " Enable search highlighting
-set hlsearch incsearch
+"set hlsearch incsearch
 " Toggle search highlight
 function! HighlightToggle()
 	if (&hlsearch == 1)
