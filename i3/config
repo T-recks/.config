@@ -3,13 +3,10 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 
-# Gaps settings
 #hide_edge_borders both
-for_window [class="^.*"] border pixel 3
-new_float normal
-smart_borders on
-gaps inner 5
-#gaps outer 10
+#for_window [class="^.*"] border pixel 3
+#new_float normal
+#smart_borders on
 
 set $mod Mod4
 set $term urxvt
@@ -157,7 +154,7 @@ bindsym $mod+t focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
