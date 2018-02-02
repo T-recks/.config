@@ -69,14 +69,20 @@ c.url.searchengines['w'] = 'https://en.wikipedia.org/w/?search={}'
 c.url.searchengines['wt'] = 'https://en.wiktionary.org/w/?search={}'
 c.url.searchengines['wk'] = 'https://en.wiktionary.org/w/?search={}'
 c.url.searchengines['ow'] = 'https://orthodoxwiki.org/?search={}'
-# Linux
+	# Software Wiki
+c.url.searchengines['ig'] = 'https://wiki.installgentoo.com/index.php?search={}'
+	# Linux Wiki
 c.url.searchengines['aw'] = 'https://wiki.archlinux.org/?search={}'
 c.url.searchengines['dw'] = 'https://wiki.debian.org/FrontPage?action=fullsearch&value={}'
 c.url.searchengines['gw'] = 'https://wiki.gentoo.org/?search={}'
-c.url.searchengines['ig'] = 'https://wiki.installgentoo.com/index.php?search={}'
+	# BSD Wiki
+c.url.searchengines['bw'] = 'https://wiki.freebsd.org/?action=fullsearch&value={}'
+c.url.searchengines['fbw'] = 'https://wiki.freebsd.org/?action=fullsearch&value={}'
+# Package Databases
 c.url.searchengines['gp'] = 'https://packages.gentoo.org/packages/search?q={}'
 c.url.searchengines['gpo'] = 'http://gpo.zugaina.org/Search?search={}'
 # Development
+c.url.searchengines['g'] = 'https://github.com/search?q={}'
 c.url.searchengines['gh'] = 'https://github.com/search?q={}'
 # Media
 c.url.searchengines['y'] = 'https://youtube.com/results?search_query={}'
