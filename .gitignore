@@ -1,4 +1,6 @@
-qutebrowser/bookmarks/
+QtProject.conf
+qutebrowser/qsettings/QtProject.conf
+qutebrowser/bookmarks/urls
 VirtualBox/
 ranger/bookmarks
 spotify/
