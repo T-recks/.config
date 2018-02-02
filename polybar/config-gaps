@@ -37,10 +37,10 @@ color15	    = ${xrdb:color15}
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 15
+height = 20
 ;offset-x = 1%
 ;offset-y = 1%
-#radius = 6.0
+radius = 6.0
 fixed-center = true
 
 background = ${colors.background}
@@ -50,7 +50,7 @@ line-size = 3
 line-color = #f00
 
 border-size = 4
-border-color = ${colors.lines}
+border-color = #00000000
 
 padding-left = 0
 padding-right = 0
@@ -66,9 +66,9 @@ font-3 = FontAwesome:pixelsize=10;2
 ; font-4 = Hack:pixelsize=32;2
 
 
-modules-left = i3 arrowR RightArrow4 xwindow RightArrow2 RightArrow1
+modules-left = space i3 arrowR RightArrow4 xwindow RightArrow2 RightArrow1
 ;modules-center =
-modules-right = RightArrow7 RightArrow4 mpd RightArrow2 RightArrow5 volume xkeyboard temperature space2 battery eth date2 space2
+modules-right = RightArrow7 RightArrow4 mpd RightArrow2 RightArrow5 volume xkeyboard temperature space2 battery eth date2 space2 space
 
 ; [bar/secondary]
 ; inherit bar/main
@@ -117,6 +117,8 @@ content-background = ${colors.lines}
 type = custom/text
 content = " "
 content-background = ${colors.background-alt}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/arrowR]
 ; background to trans
@@ -125,6 +127,8 @@ content = ""
 content-font = 0
 content-foreground = ${colors.background-alt}
 content-background = ${colors.lines}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/arrowL]
 ; grey to Blue
@@ -133,6 +137,8 @@ content = ""
 content-font = 0
 content-foreground = ${colors.background-alt}
 content-background = ${colors.lines}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/arrow1]
 type = custom/text
@@ -147,6 +153,8 @@ content = ""
 content-font = 0
 content-foreground = ${colors.color00}
 content-background = ${colors.color01}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/arrow3]
 type = custom/text
@@ -160,6 +168,8 @@ content = ""
 content-font = 0
 content-foreground = ${colors.color01}
 content-background = ${colors.color00}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/RightArrow1]
 type = custom/text
@@ -174,6 +184,8 @@ content = ""
 content-font = 0
 content-foreground = ${colors.color00}
 content-background = ${colors.color01}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/RightArrow3]
 type = custom/text
@@ -186,6 +198,8 @@ type = custom/text
 content = " "
 content-foreground = ${colors.color01}
 content-background = ${colors.color00}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/RightArrow5]
 type = custom/text
@@ -193,6 +207,8 @@ content = " "
 content-font = 0
 content-foreground = ${colors.color01}
 content-background = ${colors.background-alt}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/RightArrow6]
 type = custom/text
@@ -200,6 +216,8 @@ content = " "
 content-font = 0
 content-foreground = ${colors.color00}
 content-background = ${colors.color01}
+content-underline = ${colors.color01}
+content-overline = ${colors.color01}
 
 [module/RightArrow7]
 type = custom/text
@@ -212,23 +230,30 @@ content-background = ${colors.color01}
 type = internal/xwindow
 label = "%title:0:60:...%"
 format-foreground = ${colors.color04}
+format-underline = ${colors.color01}
+format-overline = ${colors.color01}
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-keyboard = <format-prefix><label-layout>
+format-underline = ${colors.color01}
+format-overline = ${colors.color01}
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-prefix-background = ${colors.background-alt}
+; format-prefix-underline = ${colors.secondary}
 
 label-layout = "%layout% "
+; label-layout-underline = ${colors.secondary}
 label-layout-background = ${colors.background-alt}
 
 label-indicator-padding = 1
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
+; label-indicator-underline = ${colors.secondary}
 
 [module/filesystem]
 type = internal/fs
@@ -246,6 +271,8 @@ type = internal/bspwm
 label-focused = %index%
 ; label-focused-background = ${colors.background-alt}
 label-focused-foreground = ${colors.color01}
+label-focused-underline= ${colors.color01}
+; label-focused-overline = ${colors.color01}
 label-focused-padding = 2
 
 label-occupied = %index%
@@ -264,6 +291,8 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+format-overline = ${colors.color01}
+format-underline = ${colors.color01}
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
@@ -276,6 +305,8 @@ label-mode-background = ${colors.primary}
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-foreground = ${colors.foreground}
+; label-focused-underline = ${colors.color07}
+; label-focused-overline = ${module/bspwm.label-focused-overline}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -287,6 +318,7 @@ label-unfocused-padding = 2
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${colors.color01}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
@@ -296,6 +328,8 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
+format-online-underline = ${colors.color01}
+format-online-overline = ${colors.color01}
 format-online = <label-song> <label-time>
 format-offline = <label-offline>
 ;format-stopped = %{self.format-online}
@@ -345,6 +379,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #f90000
 label = %percentage%%
 
 [module/memory]
@@ -362,15 +397,22 @@ interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
 format-connected = " "
+; format-connected-underline = #9f78e1
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.background-alt}
 ; format-padding = 1
 label-connected = %essid%
+format-connected-underline = ${colors.color01}
+format-connected-overline = ${colors.color01}
 
 format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = " "
 label-disconnected-foreground = ${colors.color00}
 label-disconnected-background = ${colors.background-alt}
+; format-disconnected-underline = #ff0000
+format-disconnected-underline = ${colors.color01}
+format-disconnected-overline = ${colors.color01}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -407,6 +449,7 @@ format-disconnected =
 
 ; format-prefix = 
 ; format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = #0a6cf5
 
 ; label = %date% %time%
 
@@ -421,6 +464,7 @@ time = "   %H:%M"
 time-alt = %H:%M
 
 ; format-prefix-foreground = ${colors.foreground}
+; format-date-underline = ${colors.color04}
 
 label = %time% %date% 
 label-background = ${colors.background-alt}
@@ -433,6 +477,8 @@ time-alt  = "  %m/%d/%Y"
 label = %time%
 label-foreground = ${colors.foreground}
 label-background = ${colors.background-alt}
+label-underline = ${colors.lines}
+label-overline = ${colors.lines}
 
 [module/volume]
 type = internal/volume
@@ -441,11 +487,15 @@ format-volume = <label-volume>
 label-volume = " %percentage%%  "
 label-volume-foreground = ${root.foreground}
 format-volume-background = ${colors.background-alt}
+format-volume-underline = ${colors.color01}
+format-volume-overline = ${colors.color01}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.color00}
 label-muted = "00%  "
 format-muted-background = ${colors.background-alt}
+format-muted-underline = ${colors.color01}
+format-muted-overline = ${colors.color01}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = ${colors.color00}
@@ -473,9 +523,13 @@ full-at = 98
 format-charging = <animation-charging><label-charging>
 format-charging-background = ${colors.background-alt}
 label-charging-background = ${colors.background-alt}
+format-charging-underline = ${colors.color01}
+format-charging-overline = ${colors.color01}
 
 format-discharging = <ramp-capacity><label-discharging>
 format-discharging-background = ${colors.background-alt}
+format-discharging-underline = ${colors.color01}
+format-discharging-overline = ${colors.color01}
 
 ; format-full-prefix = ${env:CODEPOINT_OF_AWESOME_BATTERY}
 ; format-full-prefix = ${env:VOL1}
@@ -484,6 +538,8 @@ format-full = <ramp-capacity><label-full>
 label-full-background = ${colors.background-alt}
 format-full-background = ${colors.background-alt}
 format-full-prefix-foreground = ${colors.foreground}
+format-full-underline = ${colors.color01}
+format-full-overline = ${colors.color01}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -496,6 +552,8 @@ ramp-capacity-0-background = ${colors.background-alt}
 ; ramp-capacity-2-background = ${colors.background-alt}
 ; ramp-capacity-3-background = ${colors.background-alt}
 ; ramp-capacity-4-background = ${colors.background-alt}
+ramp-capacity-0-underline = ${colors.color01}
+ramp-capacity-0-overline = ${colors.color01}
 
 
 animation-charging-0 = 
@@ -514,8 +572,12 @@ thermal-zone = 0
 warn-temperature = 70
 
 format = "<ramp> <label>"
+format-underline = ${colors.lines}
+format-overline = ${colors.lines}
 format-background = ${colors.background-alt}
 format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+format-warn-overline = ${self.format-underline}
 format-warn-background = ${colors.background-alt}
 format-warn-foreground = #ff0000
 
