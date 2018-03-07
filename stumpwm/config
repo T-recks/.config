@@ -1,0 +1,124 @@
+;; -*-lisp-*-
+;;
+;; Here is a sample .stumpwmrc file
+;;(ql:quickload :clx-truetype)
+
+(in-package :stumpwm)
+
+;;(load-module "ttf-fonts")
+;;(set-font (make-instance 'xft:font :family "DejaVu Sans Mono" :subfamily "Book" :size 11))
+
+;; var and fun for loading config files
+(defvar *confdir* "~/.config/stumpwm")
+(defun load-conf-file (filename)
+  (load (format nil "~A/~A" *confdir* filename)))
+
+;; config files to load
+(load-conf-file "modeline.lisp")
+(load-conf-file "keys.lisp")
+(load-conf-file "mymenu.lisp")
+
+;; change the prefix key to something else
+(set-prefix-key (kbd "C-z"))
+
+;; activate mode-line
+(stumpwm:toggle-mode-line (stumpwm:current-screen)
+						  (stumpwm:current-head))
+
+;; prompt the user for an interactive command. The first arg is an
+;; optional initial contents.
+(defcommand colon1 (&optional (initial "")) (:rest)
+  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
+    (when cmd
+      (eval-command cmd t))))
+
+
+;; Vim bindings for frame movement
+;; note that all of these except C-j replace default bindings,
+;; but the functions they execute have other default bindings too
+(define-key *root-map* (kbd "C-h") "move-focus left")
+(define-key *root-map* (kbd "C-j") "move-focus down")
+(define-key *root-map* (kbd "C-k") "move-focus up")
+(define-key *root-map* (kbd "C-l") "move-focus right")
+
+;; Read some doc
+(define-key *root-map* (kbd "d") "exec gv")
+;; Browse somewhere
+(define-key *root-map* (kbd "b") "colon1 exec qutebrowser http://www.")
+;; Ssh somewhere
+(define-key *root-map* (kbd "C-s") "colon1 exec urxvt -e ssh ")
+;; Lock screen
+;; (define-key *root-map* (kbd "C-l") "exec xlock")
+
+;; Web jump (works for Google and Imdb)
+(defmacro make-web-jump (name prefix)
+  `(defcommand ,(intern name) (search) ((:rest ,(concatenate 'string name " search: ")))
+    (substitute #\+ #\Space search)
+    (run-shell-command (concatenate 'string ,prefix search))))
+
+(make-web-jump "google" "qutebrowser http://www.google.fr/search?q=")
+(make-web-jump "imdb" "qutebrowser http://www.imdb.com/find?q=")
+
+;; C-t M-s is a terrble binding, but you get the idea.
+(define-key *root-map* (kbd "M-s") "google")
+;; (define-key *root-map* (kbd "i") "imdb")
+
+;; Message window font
+(set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
+
+;;; Define window placement policy...
+
+;; Clear rules
+(clear-window-placement-rules)
+
+;; Last rule to match takes precedence!
+;; TIP: if the argument to :title or :role begins with an ellipsis, a substring
+;; match is performed.
+;; TIP: if the :create flag is set then a missing group will be created and
+;; restored from *data-dir*/create file.
+;; TIP: if the :restore flag is set then group dump is restored even for an
+;; existing group using *data-dir*/restore file.
+(define-frame-preference "Default"
+  ;; frame raise lock (lock AND raise == jumpto)
+  (0 t nil :class "Konqueror" :role "...konqueror-mainwindow")
+  (1 t nil :class "XTerm"))
+
+(define-frame-preference "Ardour"
+  (0 t   t   :instance "ardour_editor" :type :normal)
+  (0 t   t   :title "Ardour - Session Control")
+  (0 nil nil :class "XTerm")
+  (1 t   nil :type :normal)
+  (1 t   t   :instance "ardour_mixer")
+  (2 t   t   :instance "jvmetro")
+  (1 t   t   :instance "qjackctl")
+  (3 t   t   :instance "qjackctl" :role "qjackctlMainForm"))
+
+(define-frame-preference "Shareland"
+  (0 t   nil :class "XTerm")
+  (1 nil t   :class "aMule"))
+
+(define-frame-preference "Emacs"
+  (1 t t :restore "emacs-editing-dump" :title "...xdvi")
+  (0 t t :create "emacs-dump" :class "Emacs"))
+
+(define-frame-preference "Browse"
+  (0 t t :create t :class "qutebrowser")
+  (0 t t :create t :class "Waterfox"))
+
+;; function for generating an application menu
+(defcommand mymenu () ()
+  (labels ((pick (options)
+             (let ((selection (stumpwm::select-from-menu (current-screen) options "")))
+               (cond
+                 ((null selection)
+                  (throw 'stumpwm::error "Abort."))
+                 ((stringp (second selection))
+                  (second selection))
+                 (t
+                  (pick (cdr selection)))))))
+    (let ((choice (pick *app-menu*)))
+      (run-shell-command choice))))
+
+(defcommand now-playing () ()
+  (message "~A" (run-shell-command "mpc --format \"[[%artist% - ]%title%]\"| head -1" T)))
+
