@@ -12,6 +12,7 @@ set $mod Mod4
 set $term urxvt
 set $browser1 qutebrowser
 set $browser2 waterfox
+bindsym $mod+x exec $term
 
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always compton -fc
@@ -43,7 +44,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # lock
-bindsym XF86ScreenSaver exec bash /home/tim/.config/i3/scripts/lock/lock.sh
+bindsym XF86ScreenSaver exec bash ~/.config/i3/scripts/lock/lock.sh
 
 # MPC
 set $pause --no-startup-id mpc toggle
@@ -57,9 +58,13 @@ bindsym XF86AudioPrev exec $prev
 bindsym XF86AudioStop exec $stop
 
 bindsym $mod+m exec urxvt -e ncmpcpp
+bindsym $mod+shift+m exec thunderbird
 
 # start a terminal
 bindsym $mod+Return exec $term
+
+# start emacs
+bindsym $mod+shift+e exec emacs
 
 # start a browser
 bindsym $mod+b exec --no-startup-id $browser1
@@ -120,16 +125,6 @@ bindsym $mod+Shift+u resize shrink height 10 px or 10 ppt
 bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
 bindsym $mod+Shift+o resize grow width 10 px or 10 ppt
 
-# Gaps Resizing
-bindsym $mod+Shift+e gaps inner current plus 5
-bindsym $mod+Shift+w gaps inner current minus 5
-
-# Gaps Reset
-bindsym $mod+Shift+s gaps inner current set 5
-
-# Gaps Eliminate
-bindsym $mod+Shift+d gaps inner current set 0
-
 # split in horizontal orientation
 bindsym $mod+apostrophe split h
 
@@ -167,6 +162,14 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+# dropdown terminal
+bindsym $mod+u [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+#exec --no-startup-id $term -n dropdown
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -222,3 +225,6 @@ bar {
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 5
+

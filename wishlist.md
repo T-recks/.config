@@ -12,8 +12,6 @@
 		- except: window switching should be exact; MacOS will simply switch to the nearest window of the previous program (if you are running multiple windows of the same program switching does not garuntee you return to the exact previous window rather than any window running the same program)
 	- maybe rofi already has easy support for this...
 - (better window rotation?)
-- figure out why $mod+e rotation and switching between split, tab, and tiling sometimes does not work
-	- i3-gaps bug??
 - more descriptive window titles (e.g. windows should give process information not just program information; e.g. "urxvt: vim" or "urxvt: ranger" instead of a bunch of windows that just say "urxvt")
 - make mod+hjkl always accurate to window position (e.g. mod+l always moves focus to the window directly right of current focused window)
 - replacing workspaces with wmii-like tagging would be worth trying

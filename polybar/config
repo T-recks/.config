@@ -307,7 +307,7 @@ icon-pause = 
 ; format-paused = "pause"
 
 label-song = 𝄞 %title%
-label-song-maxlen = 40
+label-song-maxlen = 38
 label-song-ellipsis = true
 
 label-time = "(%elapsed%/%total%)"
