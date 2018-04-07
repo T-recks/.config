@@ -32,15 +32,6 @@
     (when cmd
       (eval-command cmd t))))
 
-
-;; Vim bindings for frame movement
-;; note that all of these except C-j replace default bindings,
-;; but the functions they execute have other default bindings too
-(define-key *root-map* (kbd "C-h") "move-focus left")
-(define-key *root-map* (kbd "C-j") "move-focus down")
-(define-key *root-map* (kbd "C-k") "move-focus up")
-(define-key *root-map* (kbd "C-l") "move-focus right")
-
 ;; Read some doc
 (define-key *root-map* (kbd "d") "exec gv")
 ;; Browse somewhere
@@ -104,6 +95,9 @@
 (define-frame-preference "Browse"
   (0 t t :create t :class "qutebrowser")
   (0 t t :create t :class "Waterfox"))
+
+(define-frame-preference "Mail"
+  (0 t t :create t :instance "Mail"))
 
 ;; function for generating an application menu
 (defcommand mymenu () ()

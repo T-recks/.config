@@ -18,6 +18,21 @@
 (define-key *root-map* (kbd "\"") "select")
 (define-key *groups-map* (kbd "'") "grouplist")
 (define-key *groups-map* (kbd "\"") "gselect")
+;; (undefine-key *root-map* (kbd "r"))
+;; (undefine-key *root-map* (kbd "R"))
+(define-key *root-map* (kbd "r") "remove")
+(define-key *root-map* (kbd "R") "iresize")
+
+;; Vim bindings for frame movement
+;; note that all of these except C-j replace default bindings,
+;; but the functions they execute have other default bindings too
+(undefine-key *root-map* (kbd "C-l"))
+(undefine-key *root-map* (kbd "C-h"))
+(undefine-key *root-map* (kbd "C-k"))
+(define-key *root-map* (kbd "C-h") "move-focus left")
+(define-key *root-map* (kbd "C-j") "move-focus down")
+(define-key *root-map* (kbd "C-k") "move-focus up")
+(define-key *root-map* (kbd "C-l") "move-focus right")
 
 ;; duplicating defaults
 (define-key *root-map* (kbd "q") "only")
@@ -58,7 +73,7 @@
     ;; (define-key c (kbd "r") "exec redshift")
     ;; (define-key c (kbd "R") "exec killall redshift")
     ;; (define-key c (kbd "Pause") "exec mts-enable")
-	(define-key c (kbd ".") "mymenu")
+	(define-key c (kbd "x") "mymenu")
     c))
 
-(define-key *root-map* (kbd ".") '*launch-map*)
+(define-key *root-map* (kbd "x") '*launch-map*)
