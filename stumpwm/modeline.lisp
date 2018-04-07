@@ -21,8 +21,8 @@
 ;; (update-color-map (current-screen))
 
 
-(setf *group-format* " %t ")
-(setf *window-format* "%m%50t ")
+(setf *group-format* " %n %t ")
+(setf *window-format* "%m%n %50t ")
 ;; (setf *window-format* "%m%n%s%20t ")
 (setf *mode-line-timeout* 2)
 
@@ -32,6 +32,7 @@
 			'(:eval (stumpwm:run-shell-command "date" t))
 			|#
 			))
+
 
 (setf *mode-line-border-width* 0)
 ;;(setf *mode-line-background-color* "#000809")
